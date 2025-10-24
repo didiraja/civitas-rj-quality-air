@@ -30,7 +30,8 @@ Seu desafio é desenvolver uma interface interativa para exibir essas informaç�
 
 ### 🔹 Requisitos Técnicos
 
-- Next.js para desenvolvimento.
+- Next.js 14+ com Typescript para desenvolvimento.
+- Tailwind CSS para estilização (ou justifique outra escolha na documentação).
 - Uso de componentes reutilizáveis.
 - Gerenciamento de estado.
 - SSR (Server-Side Rendering) sempre que fizer sentido para performance.
@@ -47,8 +48,9 @@ Seu desafio é desenvolver uma interface interativa para exibir essas informaç�
   - Escolha de bibliotecas
 
 ### 🔹 Diferenciais (não obrigatórios, mas valorizados)
-- Uso de TypeScript.
-- Uso de bibliotecas de UI modernas como shadcn/ui, Chakra UI, Tailwind CSS ou similares.
+- Uso de shadcn/ui para componentes.
+- Configuração básica de CI (GitHub Actions executando testes e build).
+- Commits semânticos e histórico organizado no Git.
 
 ## 🏗️ Como Submeter o Desafio
 
