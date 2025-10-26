@@ -1,8 +1,9 @@
 "use client";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import dynamic from "next/dynamic";
-import { LeafletMouseEvent } from "leaflet";
-import { centerOfMass } from "@turf/turf";
+import { center, centerOfMass } from "@turf/turf";
+import { useAirPollution } from "../libs/services/weather/getAirPollution";
+import { IFeatureBairro } from "../types";
 
 export default function Home() {
   const DynamicMap = useMemo(
@@ -18,15 +19,22 @@ export default function Home() {
     []
   );
 
-  const [selectedBairro, setSelectedBairro] =
-    useState<LeafletMouseEvent | null>(null);
+  const [selectedBairro, setSelectedBairro] = useState<IFeatureBairro | null>(
+    null
+  );
 
   const centerBairro = useMemo(() => {
     if (selectedBairro) {
-      return centerOfMass(selectedBairro.propagatedFrom.feature);
+      return centerOfMass(selectedBairro);
     }
     return null;
   }, [selectedBairro]);
+
+  const { data } = useAirPollution({
+    enabled: !!selectedBairro,
+    lat: centerBairro?.geometry.coordinates[0] || 0,
+    lon: centerBairro?.geometry.coordinates[1] || 0,
+  });
 
   return (
     <main className="p-8 h-screen">
@@ -34,7 +42,7 @@ export default function Home() {
       {selectedBairro && (
         <>
           <p className="mt-4 font-bold text-xl">
-            {selectedBairro.propagatedFrom.feature.properties.nome}
+            {selectedBairro.properties.nome}
           </p>
           <p className="text-sm italic">
             {centerBairro?.geometry.coordinates[0]},{" "}

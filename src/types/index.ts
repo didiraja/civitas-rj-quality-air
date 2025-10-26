@@ -1,4 +1,4 @@
-import { Feature, Geometry, MultiPolygon } from "geojson"
+import { Feature, Geometry } from "geojson"
 
 export type BairroProperties = {
   objectid: number
