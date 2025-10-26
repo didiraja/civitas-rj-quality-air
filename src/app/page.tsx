@@ -30,7 +30,7 @@ export default function Home() {
     return null;
   }, [selectedBairro]);
 
-  const { data } = useAirPollution({
+  const { data: qualityData } = useAirPollution({
     enabled: !!selectedBairro,
     lat: centerBairro?.geometry.coordinates[0] || 0,
     lon: centerBairro?.geometry.coordinates[1] || 0,
@@ -44,10 +44,28 @@ export default function Home() {
           <p className="mt-4 font-bold text-xl">
             {selectedBairro.properties.nome}
           </p>
-          <p className="text-sm italic">
-            {centerBairro?.geometry.coordinates[0]},{" "}
-            {centerBairro?.geometry.coordinates[1]}
-          </p>
+          {qualityData && (
+            <>
+              <p className="text-sm">
+                <strong>Qualidade:</strong>{" "}
+                {qualityData.indexes.find((item) => item.code === "UAQI").aqi}
+              </p>
+              <p className="text-sm">
+                <strong>Categoria:</strong>{" "}
+                {
+                  qualityData.indexes.find((item) => item.code === "UAQI")
+                    .category
+                }
+              </p>
+              <p className="text-sm">
+                <strong>Principal Poluente:</strong>{" "}
+                {
+                  qualityData.indexes.find((item) => item.code === "UAQI")
+                    .dominantPollutant
+                }
+              </p>
+            </>
+          )}
         </>
       )}
     </main>
