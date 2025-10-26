@@ -1,28 +1,37 @@
 "use client";
-import { useState } from "react";
-import Map from "../components/Map";
+import { useMemo, useState } from "react";
 import dynamic from "next/dynamic";
-import { BairroProperties } from "./types";
+import { LeafletMouseEvent } from "leaflet";
 
 export default function Home() {
-  const DynamicMap = dynamic(() => import("../components/Map"), {
-    loading: () => (
-      <div className="">
-        <p>Loading...</p>
-      </div>
-    ),
-    ssr: false,
-  });
-
-  const [selectedBairro, setSelectedBairro] = useState<BairroProperties | null>(
-    null
+  const DynamicMap = useMemo(
+    () =>
+      dynamic(() => import("../components/Map"), {
+        loading: () => (
+          <div className="">
+            <p>Loading...</p>
+          </div>
+        ),
+        ssr: false,
+      }),
+    []
   );
+
+  const [selectedBairro, setSelectedBairro] =
+    useState<LeafletMouseEvent | null>(null);
 
   return (
     <main className="p-8 h-screen">
-      <DynamicMap onSelectBairro={setSelectedBairro} />
+      <DynamicMap onClickBairro={setSelectedBairro} />
       {selectedBairro && (
-        <p className="mt-4 font-bold text-xl">{selectedBairro.nome}</p>
+        <>
+          <p className="mt-4 font-bold text-xl">
+            {selectedBairro.propagatedFrom.feature.properties.nome}
+          </p>
+          <p className="text-sm italic">
+            {selectedBairro.latlng.lat}, {selectedBairro.latlng.lng}
+          </p>
+        </>
       )}
     </main>
   );

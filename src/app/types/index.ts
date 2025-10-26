@@ -1,3 +1,5 @@
+import { Feature, MultiPolygon } from "geojson"
+
 export type BairroProperties = {
   objectid: number
   nome: string
@@ -13,3 +15,5 @@ export type BairroProperties = {
   st_areashape: number
   st_perimetershape: number
 }
+
+export type IFeatureBairro = Feature<MultiPolygon, BairroProperties>
