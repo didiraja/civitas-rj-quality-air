@@ -6,8 +6,8 @@ import bairros from "../libs/bairros.json";
 import "leaflet/dist/leaflet.css";
 import "leaflet-defaulticon-compatibility";
 import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css";
-import { IFeatureBairro } from "../app/types";
 import { LeafletMouseEvent } from "leaflet";
+import { IFeatureBairro } from "../types";
 
 type Props = {
   onClickBairro: (e: LeafletMouseEvent) => void;
@@ -22,10 +22,7 @@ export default function Map({ onClickBairro }: Props) {
       center={[-22.89642, -43.47223]}
       zoom={11}
     >
-      <TileLayer
-        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-      />
+      <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
       <GeoJSON
         data={typedBairros}
         eventHandlers={{

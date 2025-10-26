@@ -2,6 +2,7 @@
 import { useMemo, useState } from "react";
 import dynamic from "next/dynamic";
 import { LeafletMouseEvent } from "leaflet";
+import { centerOfMass } from "@turf/turf";
 
 export default function Home() {
   const DynamicMap = useMemo(
@@ -20,6 +21,13 @@ export default function Home() {
   const [selectedBairro, setSelectedBairro] =
     useState<LeafletMouseEvent | null>(null);
 
+  const centerBairro = useMemo(() => {
+    if (selectedBairro) {
+      return centerOfMass(selectedBairro.propagatedFrom.feature);
+    }
+    return null;
+  }, [selectedBairro]);
+
   return (
     <main className="p-8 h-screen">
       <DynamicMap onClickBairro={setSelectedBairro} />
@@ -29,7 +37,8 @@ export default function Home() {
             {selectedBairro.propagatedFrom.feature.properties.nome}
           </p>
           <p className="text-sm italic">
-            {selectedBairro.latlng.lat}, {selectedBairro.latlng.lng}
+            {centerBairro?.geometry.coordinates[0]},{" "}
+            {centerBairro?.geometry.coordinates[1]}
           </p>
         </>
       )}
