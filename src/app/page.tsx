@@ -7,7 +7,7 @@ export default function Home() {
 
   return (
     <main className="p-8 h-screen">
-      <Map onSelectBairro={setSelectedBairro} />
+      {/* <Map onSelectBairro={setSelectedBairro} /> */}
       {selectedBairro && (
         <p className="mt-4 font-bold text-xl">{selectedBairro.nome}</p>
       )}
