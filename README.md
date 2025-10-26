@@ -1,9 +1,3 @@
-# Desafio Técnico – Desenvolvedor(a) Front-end Sênior
-
-Bem-vindo(a) ao desafio técnico!
-
-Nosso objetivo com este desafio é avaliar suas habilidades em desenvolvimento front-end moderno, boas práticas de UI/UX, integração com APIs e componentização.
-
 ## 📌 Contexto
 
 A Prefeitura do Rio de Janeiro quer oferecer aos cidadãos um Painel de Qualidade do Ar, onde qualquer pessoa pode visualizar dados atualizados sobre a qualidade do ar em diferentes bairros da cidade. A ideia é permitir que os moradores consultem as medições mais recentes, entendam a situação em sua região e possam planejar suas atividades ao ar livre com mais segurança.
