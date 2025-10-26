@@ -1,10 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
+import { AirPollutionResponse } from "../../../types/airPollution";
 
 type AirPollutionParams = { lat: number; lon: number }
 
 type AirPollutionQuery = AirPollutionParams & { enabled: boolean }
 
-export default async function GetAirPollution({ lat, lon }: AirPollutionParams): Promise<{ message: string }> {
+export default async function GetAirPollution({ lat, lon }: AirPollutionParams): Promise<AirPollutionResponse> {
 
   try {
     const response = await fetch(`/api/weather/air-pollution?lat=${lat}&lon=${lon}`);

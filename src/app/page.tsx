@@ -48,19 +48,19 @@ export default function Home() {
             <>
               <p className="text-sm">
                 <strong>Qualidade:</strong>{" "}
-                {qualityData.indexes.find((item) => item.code === "UAQI").aqi}
+                {qualityData?.indexes.find((item) => item.code === "UAQI").aqi}
               </p>
               <p className="text-sm">
                 <strong>Categoria:</strong>{" "}
                 {
-                  qualityData.indexes.find((item) => item.code === "UAQI")
+                  qualityData?.indexes.find((item) => item.code === "UAQI")
                     .category
                 }
               </p>
               <p className="text-sm">
                 <strong>Principal Poluente:</strong>{" "}
                 {
-                  qualityData.indexes.find((item) => item.code === "UAQI")
+                  qualityData?.indexes.find((item) => item.code === "UAQI")
                     .dominantPollutant
                 }
               </p>
