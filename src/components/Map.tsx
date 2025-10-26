@@ -7,15 +7,16 @@ import bairros from "../libs/bairros.json";
 import "leaflet/dist/leaflet.css";
 import "leaflet-defaulticon-compatibility";
 import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css";
+import { BairroProperties } from "../app/types";
 
-export default function Map({
-  onSelectBairro,
-}: {
-  onSelectBairro: ({ nome }: { nome: string }) => void;
-}) {
+type Props = {
+  onSelectBairro: (bairro: BairroProperties) => void;
+};
+
+export default function Map({ onSelectBairro }: Props) {
   const typedBairros = bairros as FeatureCollection<
     MultiPolygon,
-    { nome: string }
+    BairroProperties
   >;
 
   return (
