@@ -1,0 +1,5 @@
+@reference "tailwindcss";
+
+.badge {
+  @apply rounded-md p-2 text-white font-semibold text-4xl text-center mb-4
+}

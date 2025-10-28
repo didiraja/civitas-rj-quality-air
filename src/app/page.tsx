@@ -4,6 +4,7 @@ import dynamic from "next/dynamic";
 import { centerOfMass } from "@turf/turf";
 import { useAirPollution } from "../libs/services/weather/getAirPollution";
 import { IFeatureBairro } from "../types";
+import QualityBadge from "../components/QualityBadge";
 
 export default function Home() {
   const DynamicMap = useMemo(
@@ -59,6 +60,11 @@ export default function Home() {
               </p>
               {qualityAirData && (
                 <>
+                  <QualityBadge
+                    color={selectedAirData?.color as string}
+                    quality={selectedAirData?.aqi as number}
+                    category={selectedAirData?.category as string}
+                  />
                   <p className="detail-text">
                     <strong>Qualidade:</strong> {selectedAirData?.aqi}
                   </p>
