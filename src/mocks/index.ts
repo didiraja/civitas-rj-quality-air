@@ -94,8 +94,8 @@ export function mockAirPollutionResponse(lat: string, lon: string): AirPollution
       },
       {
         "code": "no2",
-        "displayName": "Nitrogen Dioxide",
-        "fullName": "NO₂",
+        "displayName": "NO₂",
+        "fullName": "Nitrogen Dioxide",
         "concentration": {
           "value": 48.2,
           "units": "ppb"
@@ -106,8 +106,8 @@ export function mockAirPollutionResponse(lat: string, lon: string): AirPollution
       },
       {
         "code": "o3",
-        "displayName": "Ozone",
-        "fullName": "O₃",
+        "displayName": "O₃",
+        "fullName": "Ozone",
         "concentration": {
           "value": 120.1,
           "units": "µg/m³"

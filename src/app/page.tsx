@@ -30,11 +30,17 @@ export default function Home() {
     return null;
   }, [selectedBairro]);
 
-  const { data: qualityData } = useAirPollution({
+  const { data: qualityAirData } = useAirPollution({
     enabled: !!selectedBairro,
     lat: centerBairro?.geometry.coordinates[0] || 0,
     lon: centerBairro?.geometry.coordinates[1] || 0,
   });
+
+  const selectedAirData = qualityAirData?.indexes.find(
+    (item) => item.code === "UAQI"
+  );
+  const selectedPollutants = qualityAirData?.pollutants;
+  const selectedRecommendations = qualityAirData?.healthRecommendations;
 
   return (
     <main className="p-8 h-screen">
@@ -44,26 +50,43 @@ export default function Home() {
           <p className="mt-4 font-bold text-xl">
             {selectedBairro.properties.nome}
           </p>
-          {qualityData && (
+          {qualityAirData && (
             <>
               <p className="text-sm">
-                <strong>Qualidade:</strong>{" "}
-                {qualityData?.indexes.find((item) => item.code === "UAQI").aqi}
+                <strong>Qualidade:</strong> {selectedAirData?.aqi}
               </p>
               <p className="text-sm">
-                <strong>Categoria:</strong>{" "}
-                {
-                  qualityData?.indexes.find((item) => item.code === "UAQI")
-                    .category
-                }
+                <strong>Categoria:</strong> {selectedAirData?.category}
               </p>
-              <p className="text-sm">
-                <strong>Principal Poluente:</strong>{" "}
-                {
-                  qualityData?.indexes.find((item) => item.code === "UAQI")
-                    .dominantPollutant
-                }
-              </p>
+              {selectedPollutants && (
+                <>
+                  <p className="text-sm">
+                    <strong>Poluentes:</strong>
+                  </p>
+                  {selectedPollutants.map(
+                    ({ code, fullName, displayName, concentration }) => {
+                      return (
+                        <p className="text-sm" key={code}>
+                          - <span className="font-semibold">{displayName}</span>{" "}
+                          {concentration.value} {concentration.units}
+                        </p>
+                      );
+                    }
+                  )}
+                </>
+              )}
+              {selectedRecommendations && (
+                <>
+                  <p className="text-sm mt-2">
+                    <strong>Recomendações de saúde:</strong>
+                  </p>
+                  {selectedRecommendations.map((rec, index) => (
+                    <p className="text-sm" key={index}>
+                      - {rec}
+                    </p>
+                  ))}
+                </>
+              )}
             </>
           )}
         </>
