@@ -23,8 +23,8 @@ export interface AirQualityIndexUAQI {
 
 export interface AirPollutionResponse {
   coordinates: {
-    lat: number;
-    lon: number;
+    lat: string;
+    lon: string;
   };
   dateTime: string;
   regionCode?: string;
