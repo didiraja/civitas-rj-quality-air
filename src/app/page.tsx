@@ -55,7 +55,7 @@ export default function Home() {
         <div className="air-data">
           {selectedBairro && (
             <>
-              <p className="font-bold text-3xl mb-4 text-white">
+              <p className="font-bold text-3xl text-white">
                 {selectedBairro.properties.nome}
               </p>
               {qualityAirData && (
@@ -65,21 +65,15 @@ export default function Home() {
                     quality={selectedAirData?.aqi as number}
                     category={selectedAirData?.category as string}
                   />
-                  <p className="detail-text">
-                    <strong>Qualidade:</strong> {selectedAirData?.aqi}
-                  </p>
-                  <p className="detail-text">
-                    <strong>Categoria:</strong> {selectedAirData?.category}
-                  </p>
                   {selectedPollutants && (
-                    <>
-                      <p className="detail-text">
-                        <strong>Poluentes:</strong>
+                    <div className="pollutants">
+                      <p>
+                        <span className="detail-label">Poluentes:</span>
                       </p>
                       {selectedPollutants.map(
                         ({ code, displayName, concentration }) => {
                           return (
-                            <p className="detail-text" key={code}>
+                            <p key={code}>
                               -{" "}
                               <span className="font-semibold">
                                 {displayName}
@@ -89,19 +83,19 @@ export default function Home() {
                           );
                         }
                       )}
-                    </>
+                    </div>
                   )}
                   {selectedRecommendations && (
-                    <>
-                      <p className="detail-text">
-                        <strong>Recomendações de saúde:</strong>
+                    <div className="recommendations">
+                      <p>
+                        <span className="detail-label">
+                          Recomendações de saúde:
+                        </span>
                       </p>
                       {selectedRecommendations.map((rec, index) => (
-                        <p className="detail-text" key={index}>
-                          - {rec}
-                        </p>
+                        <p key={index}>- {rec}</p>
                       ))}
-                    </>
+                    </div>
                   )}
                 </>
               )}

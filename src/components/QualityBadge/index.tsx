@@ -13,7 +13,6 @@ export default function QualityBadge({
     <div className={s.badge} style={{ backgroundColor: color || "#333" }}>
       <p>{quality}</p>
       <p>{category}</p>
-      {/* <p className={s.category}></p> */}
     </div>
   );
 }
