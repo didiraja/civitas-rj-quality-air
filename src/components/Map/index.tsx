@@ -17,7 +17,7 @@ export default function Map({ onClickBairro }: Props) {
 
   return (
     <MapContainer
-      className="w-full h-full rounded-2xl border-blue-800 border"
+      className="w-full min-h-[200px] h-full rounded-2xl border-blue-800 border"
       center={[-22.89642, -43.47223]}
       zoom={11}
     >

@@ -5,6 +5,7 @@ import { centerOfMass } from "@turf/turf";
 import { useAirPollution } from "../libs/services/weather/getAirPollution";
 import { IFeatureBairro } from "../types";
 import QualityBadge from "../components/QualityBadge";
+import Image from "next/image";
 
 export default function Home() {
   const DynamicMap = useMemo(
@@ -45,11 +46,18 @@ export default function Home() {
 
   return (
     <main className="p-8 h-screen">
+      <Image
+        className="mx-auto mb-4 bg-white p-2 rounded"
+        alt="Logo Prefeitura do Rio de Janeiro"
+        src="/prefeitura-rio.png"
+        width={200}
+        height={99}
+      />
+
       <h1 className="text-3xl font-bold text-center mb-8 text-white">
         Painel de Qualidade do Ar do Rio de Janeiro
       </h1>
-
-      <div className="h-[80%] grid grid-cols-[.7fr_.3fr] gap-8">
+      <div className="lg:h-[68vh] grid grid-cols-1 lg:grid-cols-[.7fr_.3fr] gap-8">
         <DynamicMap onClickBairro={setSelectedBairro} />
 
         <div className="air-data">
