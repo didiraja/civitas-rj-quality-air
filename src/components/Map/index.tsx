@@ -6,14 +6,17 @@ import bairros from "../../libs/bairros.json";
 import "leaflet/dist/leaflet.css";
 import "leaflet-defaulticon-compatibility";
 import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css";
-import { IFeatureBairro } from "../../types";
+import { BairroProperties, IFeatureBairro } from "../../types";
 
 type Props = {
   onClickBairro: (e: IFeatureBairro) => void;
 };
 
 export default function Map({ onClickBairro }: Props) {
-  const typedBairros = bairros as IFeatureBairro;
+  const typedBairros = bairros as GeoJSON.FeatureCollection<
+    GeoJSON.Geometry,
+    BairroProperties
+  >;
 
   return (
     <MapContainer
